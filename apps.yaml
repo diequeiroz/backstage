@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: zordon
+  description: zordon
+spec:
+  owner: team-c
+  domain: playback
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: user
+  description: user
+spec:
+  owner: team-c
+  domain: playback

@@ -1,3 +1,24 @@
+# Instructions to run grafana embeded:
+
+## Install stuff to run backstage as usual
+
+## Start backstage: `yarn dev`
+
+## Start a grafana with some options enabled
+
+```docker run -e GF_SECURITY_ALLOW_EMBEDDING=true -e GF_SERVER_ROOT_URL="%(protocol)s://%(domain)s:%(http_port)s/api/grafana" -e GF_SERVER_SERVE_FROM_SUB_PATH=true -e GF_SECURITY_ADMIN_PASSWORD=blabla -e GF_AUTH_ANONYMOUS_ENABLED=true -p 3001:3000 grafana/grafana-oss```
+
+## Access [localhost:3001/api/grafana/login](http://localhost:3001/api/grafana/login) with credentials `admin` `blabla`
+
+## Import a new dashboard:
+
+```{"annotations":{"list":[{"builtIn":1,"datasource":{"type":"grafana","uid":"-- Grafana --"},"enable":true,"hide":true,"iconColor":"rgba(0, 211, 255, 1)","name":"Annotations & Alerts","type":"dashboard"}]},"editable":true,"fiscalYearStartMonth":0,"graphTooltip":0,"id":1,"links":[],"liveNow":false,"panels":[{"datasource":{"type":"datasource","uid":"grafana"},"fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisCenteredZero":false,"axisColorMode":"text","axisLabel":"","axisPlacement":"auto","barAlignment":0,"drawStyle":"line","fillOpacity":0,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"auto","spanNulls":false,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"mappings":[],"thresholds":{"mode":"absolute","steps":[{"color":"green","value":null},{"color":"red","value":80}]}},"overrides":[]},"gridPos":{"h":8,"w":12,"x":0,"y":0},"id":1,"options":{"legend":{"calcs":[],"displayMode":"list","placement":"bottom","showLegend":true},"tooltip":{"mode":"single","sort":"none"}},"title":"panel 1 - ${app}","type":"timeseries"},{"datasource":{"type":"datasource","uid":"grafana"},"fieldConfig":{"defaults":{"color":{"mode":"palette-classic"},"custom":{"axisCenteredZero":false,"axisColorMode":"text","axisLabel":"","axisPlacement":"auto","barAlignment":0,"drawStyle":"line","fillOpacity":0,"gradientMode":"none","hideFrom":{"legend":false,"tooltip":false,"viz":false},"lineInterpolation":"linear","lineWidth":1,"pointSize":5,"scaleDistribution":{"type":"linear"},"showPoints":"auto","spanNulls":false,"stacking":{"group":"A","mode":"none"},"thresholdsStyle":{"mode":"off"}},"mappings":[],"thresholds":{"mode":"absolute","steps":[{"color":"green","value":null},{"color":"red","value":80}]}},"overrides":[]},"gridPos":{"h":8,"w":12,"x":12,"y":0},"id":2,"options":{"legend":{"calcs":[],"displayMode":"list","placement":"bottom","showLegend":true},"tooltip":{"mode":"single","sort":"none"}},"title":"panel 2 - ${app}","type":"timeseries"}],"refresh":"","schemaVersion":38,"style":"dark","tags":[],"templating":{"list":[{"current":{},"hide":0,"includeAll":false,"multi":false,"name":"app","options":[],"query":"","skipUrlSync":false,"type":"custom"}]},"time":{"from":"now-6h","to":"now"},"timepicker":{},"timezone":"","title":"New dashboard","uid":"ea067e79-dedd-41a5-a178-98903c11c9cc","version":2,"weekStart":""}```
+
+## Access catalog [localhost:3000/catalog/default/system/user/costs](http://localhost:3000/catalog/default/system/user/costs)
+
+## Have fun!!
+
+
 [![headline](docs/assets/headline.png)](https://backstage.io/)
 
 # [Backstage](https://backstage.io)

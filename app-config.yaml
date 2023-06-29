@@ -40,7 +40,10 @@ backend:
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
   csp:
-    connect-src: ["'self'", 'http:', 'https:']
+    connect-src: ["'self'", 'http:', 'https:',]
+    script-src: ["'self'", "'unsafe-eval'", "'unsafe-inline'",]
+    frame-ancestors: ["'self'", 'http://localhost:3000']
+
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   reading:
@@ -51,6 +54,17 @@ backend:
 
 # See README.md in the proxy-backend plugin for information on the configuration format
 proxy:
+  '/grafana': 
+    target: http://localhost:3001
+    pathRewrite: {}
+    cookieDomainRewrite:
+      localhost: localhost
+    allowedHeaders: ['Set-Cookie', 'Cookie']
+    headers: 
+      Access-Control-Allow-Origin: "*"
+    onProxyRes: "console.log()"
+
+
   '/circleci/api':
     target: https://circleci.com/api/v1.1
     headers:
@@ -279,6 +293,8 @@ catalog:
     # Backstage end-to-end tests of TechDocs
     - type: file
       target: ../../cypress/e2e-fixture.catalog.info.yaml
+    - type: file
+      target: ../../apps.yaml
 scaffolder:
   # Use to customize default commit author info used when new components are created
   # defaultAuthor:

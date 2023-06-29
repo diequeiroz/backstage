@@ -166,6 +166,9 @@ import {
   isLinguistAvailable,
   EntityLinguistCard,
 } from '@backstage/plugin-linguist';
+import {
+  CostsDidiPage
+} from '@backstage/plugin-costs-didi'
 
 const customEntityFilterKind = ['Component', 'API', 'System'];
 
@@ -781,6 +784,13 @@ const systemPage = (
       <Grid container spacing={3} alignItems="stretch">
         <Grid item xs={12}>
           <EntityScoreCardContent />
+        </Grid>
+      </Grid>
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/costs" title="Costsss">
+      <Grid container spacing={3} alignItems="stretch">
+        <Grid item xs={12}>
+          <CostsDidiPage />
         </Grid>
       </Grid>
     </EntityLayout.Route>

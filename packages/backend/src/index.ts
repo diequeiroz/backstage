@@ -68,6 +68,7 @@ import linguist from './plugins/linguist';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
+import grafana from './plugins/grafana';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -188,6 +189,10 @@ async function main() {
   apiRouter.use('/entity-feedback', await entityFeedback(entityFeedbackEnv));
   apiRouter.use('/adr', await adr(adrEnv));
   apiRouter.use('/linguist', await linguist(linguistEnv));
+
+  const carmenEnv = useHotMemoize(module, () => createEnv('grafana'));
+  apiRouter.use('/grafana', await grafana(carmenEnv));
+
   apiRouter.use(notFoundHandler());
 
   await lighthouse(lighthouseEnv);
